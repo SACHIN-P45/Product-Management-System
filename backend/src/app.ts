@@ -10,6 +10,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).send("API is running!");
+});
+
 app.use("/products", productRoutes);
 
 // Global error handler
