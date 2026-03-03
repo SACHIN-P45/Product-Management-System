@@ -15,7 +15,7 @@ function App() {
 
                 <div className="relative z-10 flex flex-col min-h-screen">
                     <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-slate-200/60 transition-all duration-300">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="w-full px-4 sm:px-6 lg:px-8">
                             <div className="flex h-16 items-center justify-between">
                                 <Link to="/" className="flex items-center gap-3 group">
                                     <div className="p-2 bg-indigo-600 rounded-xl group-hover:bg-indigo-700 transition-colors shadow-sm">
@@ -33,7 +33,7 @@ function App() {
                             </div>
                         </div>
                     </header>
-                    <main className="flex-1 w-full max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+                    <main className="flex-1 w-full py-8 px-4 sm:px-6 lg:px-8">
                         <Routes>
                             <Route path="/" element={<ProductList />} />
                             <Route path="/add" element={<AddProduct />} />

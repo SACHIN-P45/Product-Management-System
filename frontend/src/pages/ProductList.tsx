@@ -88,7 +88,7 @@ export default function ProductList() {
     const totalPages = Math.ceil(total / limit);
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full animate-fade-in-up">
+        <div className="px-4 sm:px-6 lg:px-8 w-full animate-fade-in-up">
             {/* Header Section */}
             <div className="sm:flex sm:items-center sm:justify-between mb-8">
                 <div>
@@ -196,10 +196,10 @@ export default function ProductList() {
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-5">
                                             <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold border shadow-sm ${Number(product.stock) > 10
-                                                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                                    : Number(product.stock) > 0
-                                                        ? 'bg-amber-50 text-amber-700 border-amber-200'
-                                                        : 'bg-red-50 text-red-700 border-red-200'
+                                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                                : Number(product.stock) > 0
+                                                    ? 'bg-amber-50 text-amber-700 border-amber-200'
+                                                    : 'bg-red-50 text-red-700 border-red-200'
                                                 }`}>
                                                 <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${Number(product.stock) > 10 ? 'bg-emerald-500' : Number(product.stock) > 0 ? 'bg-amber-500' : 'bg-red-500'
                                                     }`}></span>
@@ -271,8 +271,8 @@ export default function ProductList() {
                                             key={i + 1}
                                             onClick={() => setPage(i + 1)}
                                             className={`relative inline-flex items-center px-4 py-2 text-sm font-bold transition-colors ${page === i + 1
-                                                    ? 'z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 shadow-inner'
-                                                    : 'text-slate-700 bg-white ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0'
+                                                ? 'z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 shadow-inner'
+                                                : 'text-slate-700 bg-white ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0'
                                                 }`}
                                         >
                                             {i + 1}

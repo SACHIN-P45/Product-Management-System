@@ -48,7 +48,7 @@ export default function EditProduct() {
     };
 
     if (fetchError) return (
-        <div className="max-w-7xl mx-auto px-4 mt-20 text-center animate-fade-in-up">
+        <div className="w-full px-4 mt-20 text-center animate-fade-in-up">
             <div className="inline-flex flex-col items-center p-8 bg-red-50 rounded-3xl border border-red-100">
                 <span className="text-red-500 font-bold text-lg">{fetchError}</span>
             </div>
@@ -56,14 +56,14 @@ export default function EditProduct() {
     );
 
     if (!initialData) return (
-        <div className="max-w-7xl mx-auto px-4 mt-32 flex flex-col items-center justify-center animate-pulse">
+        <div className="w-full px-4 mt-32 flex flex-col items-center justify-center animate-pulse">
             <Loader2 className="h-10 w-10 text-indigo-500 animate-spin mb-4" />
             <span className="text-slate-500 font-medium text-lg">Loading product details...</span>
         </div>
     );
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full animate-fade-in-up">
+        <div className="w-full px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center p-3 bg-slate-200 rounded-2xl mb-4 border border-slate-300">
                     <Settings2 className="h-6 w-6 text-slate-700" />

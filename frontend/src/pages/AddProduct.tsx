@@ -23,7 +23,7 @@ export default function AddProduct() {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full animate-fade-in-up">
+        <div className="w-full px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="text-center mb-10">
                 <div className="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-2xl mb-4 border border-indigo-200">
                     <Sparkles className="h-6 w-6 text-indigo-600" />
