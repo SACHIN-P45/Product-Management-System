@@ -11,7 +11,8 @@ app.use(cors({
     origin: [
         'http://localhost:5173',
         'https://product-management-system-d716n0ht9-sachinabi67-4941s-projects.vercel.app',
-        'https://product-management-system-beta-eight.vercel.app' // Optional: if there's a custom domain or main branch URL
+        'https://product-management-system-beta-eight.vercel.app',
+        'https://product-management-system-gold-chi.vercel.app' // Added new Vercel domain
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
