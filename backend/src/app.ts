@@ -14,7 +14,19 @@ app.get("/", (req: Request, res: Response) => {
     res.status(200).send("API is running!");
 });
 
-app.use("/products", productRoutes);
+// Middleware to check database connection BEFORE processing product routes
+app.use("/products", (req: Request, res: Response, next: NextFunction) => {
+    const mongoose = require("mongoose");
+    if (mongoose.connection.readyState !== 1) {
+        res.status(503).json({
+            error: "Database Connection Failed",
+            message: "The backend server is running, but it cannot connect to MongoDB.",
+            action_required: "1. Ensure 'MONGO_URI' is set in Render Environment Variables. 2. Ensure '0.0.0.0/0' is added to MongoDB Atlas Network Access whitelist.",
+        });
+        return;
+    }
+    next();
+}, productRoutes);
 
 // Global error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
