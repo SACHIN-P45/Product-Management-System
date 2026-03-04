@@ -7,7 +7,16 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:5173',
+        'https://product-management-system-d716n0ht9-sachinabi67-4941s-projects.vercel.app',
+        'https://product-management-system-beta-eight.vercel.app' // Optional: if there's a custom domain or main branch URL
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
