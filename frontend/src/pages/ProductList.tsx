@@ -39,9 +39,12 @@ export default function ProductList() {
             });
             setProducts(res.data.data);
             setTotal(res.data.total);
-        } catch (err) {
-            setError('Failed to fetch products');
-            toast.error('Failed to fetch products');
+        } catch (err: any) {
+            const serverError = err.response?.data?.error || err.response?.data?.message || 'Failed to fetch products';
+            const actionRequired = err.response?.data?.action_required;
+            const fullErrorMsg = actionRequired ? `${serverError}: ${actionRequired}` : serverError;
+            setError(fullErrorMsg);
+            toast.error(serverError);
         } finally {
             setLoading(false);
         }
