@@ -1,41 +1,57 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ChevronLeft } from 'lucide-react';
 import api from '../api/axios';
 import ProductForm from '../components/ProductForm';
+import { Product } from '../types/product';
 
 export default function AddProduct() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [submitError, setSubmitError] = useState('');
 
-    const handleSubmit = async (data: any) => {
+    const handleSubmit = async (data: Omit<Product, 'id' | 'created_at'>) => {
         setIsLoading(true);
+        setSubmitError('');
         try {
             await api.post('/products', data);
-            toast.success('Product created successfully');
+            toast.success('Product created successfully! 🎉');
             navigate('/');
-        } catch (error) {
-            toast.error('Failed to create product');
+        } catch (err: any) {
+            const msg = err.userMessage || 'Failed to create product. Please try again.';
+            setSubmitError(msg);
+            toast.error(msg, { id: 'create-error' });
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <div className="w-full px-4 sm:px-6 lg:px-8 animate-fade-in-up">
-            <div className="text-center mb-10">
-                <div className="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-2xl mb-4 border border-indigo-200">
-                    <Sparkles className="h-6 w-6 text-indigo-600" />
+        <div className="w-full animate-fade-in-up">
+            {/* Back button */}
+            <Link
+                to="/"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-300 mb-6 transition-colors group"
+            >
+                <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+                Back to Inventory
+            </Link>
+
+            {/* Page header */}
+            <div className="mb-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-4">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    New Product
                 </div>
-                <h2 className="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 sm:text-4xl">
-                    Add New Product
-                </h2>
-                <p className="mt-3 text-lg text-slate-500 max-w-2xl mx-auto font-medium">
-                    Create a new listing in your inventory. Fill out the details below.
+                <h1 className="text-3xl font-extrabold text-white tracking-tight">Add Product</h1>
+                <p className="text-gray-500 text-sm mt-2 font-medium">
+                    Create a new listing in your inventory. All fields are required.
                 </p>
             </div>
-            <ProductForm onSubmit={handleSubmit} isLoading={isLoading} />
+
+            <ProductForm onSubmit={handleSubmit} isLoading={isLoading} submitError={submitError} />
         </div>
     );
 }
